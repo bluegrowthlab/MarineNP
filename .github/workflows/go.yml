@@ -104,7 +104,9 @@ jobs:
         mkdir -p release
         cp -r public release/
         cp artifacts/marinenp-*/* release/
-        cat sql/sqlite/marinenp-sqlite.db.gz.part-*.gz | gunzip -c > release/marinenp-sqlite.db
+        wget https://github.com/bluegrowthlab/MarineNP/releases/download/v1.0.0/marinenp_v1_r20250608_db.zip -O db.zip
+        unzip -p db.zip > release/marinenp-sqlite.db
+        rm db.zip
         cd release && zip -r ../release_app.zip .
 
     - name: Create Release
