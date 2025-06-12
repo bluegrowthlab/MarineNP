@@ -1,0 +1,144 @@
+{
+  "type": "page",
+  "title": "",
+  "body": [
+    {
+      "type": "container",
+      "body": [
+        {
+          "type": "tpl",
+          "tpl": "<div class='text-center mb-5 mt-5'><h2>MarineNP</h2><p class='lead'>A Comprehensive and Locally Deployable Database of <strong>Marine Natural Products</strong>.</p></div>"
+        },
+        {
+          "type": "service",
+          "api": "/api/v1/statistics",
+          "body": [
+            {
+              "type": "grid",
+              "columns": [
+                {
+                  "md": 4,
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<div class='text-center'><h1 class='text-primary mb-1'>${total_molecules}</h1><p>Marine Natural Products</p></div>"
+                    }
+                  ]
+                },
+                {
+                  "md": 4,
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<div class='text-center'><h1 class='text-primary mb-1'>${total_organisms}</h1><p>Marine Species</p></div>"
+                    }
+                  ]
+                },
+                {
+                  "md": 4,
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<div class='text-center'><h1 class='text-primary mb-1'>v${version}</h1><p>Updated at: ${last_update}</p></div>"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "divider",
+          "className": "my-4"
+        },
+        {
+          "type": "grid",
+          "columns": [
+            {
+              "md": 6,
+              "body": [
+                {
+                  "type": "card",
+                  "header": {
+                    "title": "Interactive Search & Export",
+                    "subTitle": "On-Demand Access to MarineNP Data",
+                    "avatar": "/public/img/icons/search.svg",
+                    "avatarClassName": "pull-left thumb-sm avatar m-r"
+                  },
+                  "className": "hover:shadow-lg h-full",
+                  "itemAction": {
+                    "type": "button",
+                    "actionType": "link",
+                    "link": "/data-access/browse"
+                  },
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<p>Our powerful interactive platform lets you <strong>search, filter, and export specific subsets</strong> of the MarineNP database. This is ideal if you need customized data extracts for your research.</p><ul><li><b>Advanced Search:</b> Find data using detailed criteria like various identifiers, chemical properties, and biological origin.</li><li><b>Customizable Exports:</b> Get your data in various formats such as CSV, TSV and JSON, tailored for your analysis.</li></ul>"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "md": 6,
+              "body": [
+                {
+                  "type": "card",
+                  "header": {
+                    "title": "Complete Database Download",
+                    "subTitle": "Download the Entire MarineNP Database",
+                    "avatar": "/public/img/icons/download.svg",
+                    "avatarClassName": "pull-left thumb-sm avatar m-r"
+                  },
+                  "className": "hover:shadow-lg h-full",
+                  "itemAction": {
+                    "type": "button",
+                    "actionType": "link",
+                    "link": "/data-access/downloads"
+                  },
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<p>Download the <strong>entire MarineNP database</strong> for comprehensive offline analysis or seamless integration into your existing data infrastructure. This option provides the full breadth of our curated data.</p><ul><li><b>Full Dataset:</b> Access all current and historical data entries.</li><li><b>Various Formats:</b> Available in SQL database format, CSV tables, and R data frames for easy integration.</li></ul>"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "md": 12,
+              "body": [
+                {
+                  "type": "divider",
+                  "className": "my-4"
+                },
+                {
+                  "type": "card",
+                  "header": {
+                    "title": "Local Service Deployment",
+                    "subTitle": "Host Your Own MarineNP Instance",
+                    "avatar": "/public/img/icons/server.svg",
+                    "avatarClassName": "pull-left thumb-sm avatar m-r"
+                  },
+                  "className": "hover:shadow-lg",
+                  "itemAction": {
+                    "type": "button",
+                    "actionType": "link",
+                    "link": "/deploy"
+                  },
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<p>While the MarineNP online service provides powerful filtering, it has resource limits. For high-demand users, we recommend deploying a private instance. This gives you a dedicated, unrestricted version of the service on your own hardware, ready in minutes.</p><ul><li><b>Rapid Deployment:</b> Set up your personal server or stand-alone database in just a few minutes with our clear documentation.</li><li><b>Flexible Use Cases:</b> Operate it as a shared server for your team or as a private database on your own machine.</li><li><b>Easy Integration:</b> Seamlessly connect your private instance to your R or Python analysis pipelines for programmatic access.</li><li><b>No Resource Limits:</b> Run intensive filtering and search operations without the limitations of the public online service.</li></ul>"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

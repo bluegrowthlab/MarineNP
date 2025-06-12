@@ -1,0 +1,278 @@
+{
+  "type": "page",
+  "title": "Molecular Property Analysis and Classification",
+  "body": [
+    {
+      "type": "panel",
+      "title": "",
+      "body": [
+        {
+          "type": "tpl",
+          "tpl": "You are currently analyzing <strong>${conditions || keyword ? 'a subset' : 'the whole'}</strong> of the MarineNP database${conditions || keyword ? ' using the filter below' : ''}. <a href='/#/data-access/browse'>Click here</a> to build and apply filters to your analysis."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "tpl",
+          "tpl": "Filtering by keyword: <code>${keyword}</code>.",
+          "visibleOn": "${keyword}"
+        },
+        {
+          "type": "json",
+          "levelExpand": 3,
+          "value": "${conditions | json}",
+          "visibleOn": "${conditions}"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "tabs",
+          "tabs": [
+            {
+              "title": "Numeric Properties",
+              "body": [
+                {
+                  "type": "form",
+                  "name": "numeric_analysis_form",
+                  "wrapWithPanel": false,
+                  "body": [
+                    {
+                      "type": "select",
+                      "name": "parameter",
+                      "label": "Select the property",
+                      "value": "molecular_weight",
+                      "options": [
+                        {
+                          "label": "Molecular Weight",
+                          "value": "molecular_weight"
+                        },
+                        {
+                          "label": "Exact Molecular Weight",
+                          "value": "exact_molecular_weight"
+                        },
+                        {
+                          "label": "Total Atom Count",
+                          "value": "total_atom_count"
+                        },
+                        {
+                          "label": "Heavy Atom Count",
+                          "value": "heavy_atom_count"
+                        },
+                        {
+                          "label": "ALogP",
+                          "value": "alogp"
+                        },
+                        {
+                          "label": "Topological Polar Surface Area",
+                          "value": "topological_polar_surface_area"
+                        },
+                        {
+                          "label": "Rotatable Bond Count",
+                          "value": "rotatable_bond_count"
+                        },
+                        {
+                          "label": "Hydrogen Bond Acceptors",
+                          "value": "hydrogen_bond_acceptors"
+                        },
+                        {
+                          "label": "Hydrogen Bond Donors",
+                          "value": "hydrogen_bond_donors"
+                        },
+                        {
+                          "label": "Formal Charge",
+                          "value": "formal_charge"
+                        },
+                        {
+                          "label": "Van Der Walls Volume",
+                          "value": "van_der_walls_volume"
+                        },
+                        {
+                          "label": "QED Drug Likeliness",
+                          "value": "qed_drug_likeliness"
+                        },
+                        {
+                          "label": "NP Likeness",
+                          "value": "np_likeness"
+                        },
+                        {
+                          "label": "Fraction Csp3",
+                          "value": "fractioncsp3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "label": "Analyze",
+                      "level": "primary",
+                      "actionType": "dialog",
+                      "dialog": {
+                        "title": "Analysis for: ${parameter}",
+                        "size": "lg",
+                        "height": "90vh",
+                        "body": {
+                          "type": "chart",
+                          "height": "70vh",
+                          "name": "numeric_analysis_chart",
+                          "initFetch": true,
+                          "api": {
+                            "method": "get",
+                            "url": "/api/v1/molecules/analyze",
+                            "data": {
+                              "parameter": "${parameter}",
+                              "chart_type": "density",
+                              "conditions": "${conditions}",
+                              "keyword": "${keyword}"
+                            }
+                          },
+                          "config": {
+                            "tooltip": {
+                              "trigger": "axis"
+                            },
+                            "grid": {
+                              "left": "3%",
+                              "right": "4%",
+                              "bottom": "3%",
+                              "containLabel": true
+                            },
+                            "xAxis": {
+                              "type": "category",
+                              "data": "${values|pick:label}",
+                              "axisLabel": {
+                                "interval": 0,
+                                "rotate": 45,
+                                "hideOverlap": true
+                              }
+                            },
+                            "yAxis": {
+                              "type": "value"
+                            },
+                            "series": [
+                              {
+                                "type": "line",
+                                "data": "${values|pick:value}"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Classification",
+              "body": [
+                {
+                  "type": "form",
+                  "name": "classification_analysis_form",
+                  "wrapWithPanel": false,
+                  "body": [
+                    {
+                      "type": "select",
+                      "name": "parameter",
+                      "label": "Select the classifier",
+                      "value": "classifire",
+                      "options": [
+                        {
+                          "label": "Classifire",
+                          "value": "classifire"
+                        },
+                        {
+                          "label": "NP Classifier",
+                          "value": "np_classifier"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "label": "Analyze",
+                      "level": "primary",
+                      "actionType": "dialog",
+                      "dialog": {
+                        "title": "Analysis for: ${parameter}",
+                        "size": "lg",
+                        "height": "90vh",
+                        "body": {
+                          "type": "chart",
+                          "height": "70vh",
+                          "name": "classification_analysis_chart",
+                          "initFetch": true,
+                          "api": {
+                            "method": "get",
+                            "url": "/api/v1/molecules/analyze",
+                            "data": {
+                              "parameter": "${parameter}",
+                              "chart_type": "sunburst",
+                              "conditions": "${conditions}",
+                              "keyword": "${keyword}"
+                            }
+                          },
+                          "config": {
+                            "tooltip": {
+                              "trigger": "item"
+                            },
+                            "series": [
+                              {
+                                "type": "sunburst",
+                                "data": "${values}",
+                                "radius": [
+                                  "0%",
+                                  "95%"
+                                ],
+                                "emphasis": {
+                                  "focus": "ancestor"
+                                },
+                                "levels": [
+                                  {},
+                                  {
+                                    "r0": "0%",
+                                    "r": "30%",
+                                    "itemStyle": {
+                                      "borderRadius": 4
+                                    },
+                                    "label": {
+                                      "align": "right",
+                                      "hideOverlap": true
+                                    }
+                                  },
+                                  {
+                                    "r0": "32%",
+                                    "r": "60%",
+                                    "label": {
+                                      "align": "right",
+                                      "hideOverlap": true
+                                    }
+                                  },
+                                  {
+                                    "r0": "62%",
+                                    "r": "100%",
+                                    "label": {
+                                      "align": "right",
+                                      "padding": 3,
+                                      "silent": false,
+                                      "hideOverlap": true
+                                    },
+                                    "itemStyle": {
+                                      "borderWidth": 3
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

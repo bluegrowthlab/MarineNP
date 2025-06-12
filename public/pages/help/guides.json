@@ -1,0 +1,106 @@
+{
+  "type": "page",
+  "title": "MarineNP User Guides",
+  "body": [
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "Keyword Search",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "<p>The Keyword Search feature allows you to find marine natural products by searching across multiple fields simultaneously. You can access this feature at <a href='/#/data-access/browse'>Data Access > Browse</a>.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>Searchable Fields:</h4><div style='display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;'><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Compound Name</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>SMILES Structure</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Identifier</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>CAS Number</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Synonyms</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>IUPAC Name</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>InChI</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>InChI Key</span></div>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>How to use Keyword Search:</h4><ol><li>Navigate to <a href='/#/data-access/browse'>Data Access > Browse</a></li><li>Locate the search bar at the top of the page</li><li>Enter your search term - it will match any of the searchable fields</li><li>Click the Search button</li><li>Results will be displayed immediately below</li></ol>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<p><strong>Note:</strong> The search is case-insensitive and will find partial matches. For example, searching for 'marine' will find compounds with 'marine' in their name, synonyms, or any other searchable field.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<img src='/public/img/guide/guide-keyword-search.png' alt='Keyword Search Interface' style='width: 80%; display: block; margin: 20px auto;' />"
+            }
+          ]
+        },
+        {
+          "title": "Advanced Search",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "<h3>Advanced Search Guide</h3>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<p>Advanced Search provides powerful filtering options to find specific marine natural products. You can access this feature at <a href='/#/data-access/browse'>Data Access > Browse</a> by clicking the 'Advanced Search' button.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>Search Filters:</h4><div style='display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;'><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Identifier</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Name</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>CAS Number</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>IUPAC Name</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Synonyms</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Standard InChI</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Standard InChI Key</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Canonical SMILES</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Sugar Free SMILES</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Organism</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Has Stereo</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Molecular Formula</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Molecular Weight</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Exact Molecular Weight</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>ALogP</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Topological Polar Surface Area</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Total Atom Count</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Heavy Atom Count</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Rotatable Bond Count</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>H-Bond Acceptors</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>H-Bond Donors</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>H-Bond Acceptors (Lipinski)</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>H-Bond Donors (Lipinski)</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Lipinski Rule of Five Violations</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Aromatic Rings Count</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>QED Drug Likeliness</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Formal Charge</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Fraction Csp3</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Number of Minimal Rings</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Van Der Walls Volume</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Contains Sugar</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Contains Ring Sugars</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Contains Linear Sugars</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>NP Likeness</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Chemical Class</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Chemical Sub Class</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Chemical Super Class</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Direct Parent Classification</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>NP Classifier Pathway</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>NP Classifier Superclass</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>NP Classifier Class</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>NP Classifier Is Glycoside</span></div>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>How to use Advanced Search:</h4><ol><li>Navigate to <a href='/#/data-access/browse'>Data Access > Browse</a></li><li>Click the 'Advanced Search' button</li><li>Select the properties you want to filter by</li><li>Set the desired values or ranges for each property</li><li>Click the Search button to apply the filters</li><li>Results will be displayed below with your applied filters</li></ol>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<p><strong>Note:</strong> You can combine multiple filters to narrow down your search results. The filters are applied simultaneously, so only compounds matching all selected criteria will be shown.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<img src='/public/img/guide/guide-advanced-search.png' alt='Advanced Search Interface' style='width: 80%; display: block; margin: 20px auto;' />"
+            }
+          ]
+        },
+        {
+          "title": "Details View",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "<h3>Details View Guide</h3>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<p>The Details view provides comprehensive information about selected compounds and related data. You can access this view by clicking on any compound in the search results.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>Interactive Navigation:</h4><div style='display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;'><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Chemical Classification Links</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Organism Source Links</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>External Database Links</span><span style='background: #e6f7ff; color: #1890ff; padding: 4px 12px; border-radius: 16px; border: 1px solid #91d5ff;'>Geographic Distribution</span></div>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>Available Information:</h4><ul><li><strong>Basic Information:</strong> Compound name, identifier, CAS number, and IUPAC name</li><li><strong>Structure Information:</strong> InChI, InChI Key, SMILES representations</li><li><strong>Chemical Classification:</strong> Chemical class, subclass, superclass, and NP classifier information</li><li><strong>Physical Properties:</strong> Molecular weight, atom counts, bond information, and other physicochemical properties</li><li><strong>Biological Sources:</strong> Source organisms with links to external databases</li><li><strong>Geographic Data:</strong> NP locations and OBIS distribution data</li></ul>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<h4>Interactive Features:</h4><ul><li><strong>Chemical Classification Links:</strong> Click on any classification (class, subclass, superclass) to find other compounds in the same category</li><li><strong>Organism Source Links:</strong> Click on organism names to view all compounds from that source</li><li><strong>External Database Links:</strong> Access additional information from WoRMS and other external databases</li><li><strong>Geographic Distribution:</strong> View the global distribution of source organisms using OBIS data</li></ul>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<p><strong>Note:</strong> The Details view is organized into tabs for easy navigation. Use the tabs to switch between different types of information, such as structure data, properties, and biological sources.</p>"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<img src='/public/img/guide/guide-details-class-subset.png' alt='Details View Interface' style='width: 80%; display: block; margin: 20px auto;' />"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<img src='/public/img/guide/guide-details-links.png' alt='Details View Interface' style='width: 80%; display: block; margin: 20px auto;' />"
+            },
+            {
+              "type": "tpl",
+              "tpl": "<img src='/public/img/guide/guide-details-geo.png' alt='Details View Interface' style='width: 80%; display: block; margin: 20px auto;' />"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

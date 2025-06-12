@@ -1,0 +1,121 @@
+name: Go Build
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'  # Trigger on version tags
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., v1.0.0)'
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: marinenp-linux
+            goos: linux
+            goarch: amd64
+          - os: windows-latest
+            artifact_name: marinenp-windows.exe
+            goos: windows
+            goarch: amd64
+          - os: macos-latest
+            artifact_name: marinenp-macos
+            goos: darwin
+            goarch: arm64
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Install dependencies
+      if: runner.os == 'Windows'
+      run: |
+        choco install mingw
+        $env:Path += ";C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin"
+
+    - name: Set version
+      id: version
+      shell: bash
+      run: |
+        echo "Current shell: $SHELL"
+        echo "Event name: ${{ github.event_name }}"
+        echo "Input version: ${{ inputs.version }}"
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.version }}" ]; then
+          echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+        elif [ "${{ github.ref }}" = refs/tags/* ]; then
+          echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        else
+          echo "VERSION=dev-$(date +'%Y%m%d')-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+        fi
+        echo "Set VERSION to: $VERSION"
+
+    - name: Build
+      env:
+        GOOS: ${{ matrix.goos }}
+        GOARCH: ${{ matrix.goarch }}
+        CGO_ENABLED: 1
+        VERSION: ${{ env.VERSION }}
+        BUILD_TIME: ${{ github.event.repository.updated_at }}
+      run: |
+        go build -ldflags "-X main.Version=${{ env.VERSION }} -X main.BuildTime=${{ env.BUILD_TIME }}" -o ${{ matrix.artifact_name }} main.go
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: ${{ matrix.artifact_name }}
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+        pattern: marinenp-*
+
+    - name: Prepare release package
+      run: |
+        cd "$GITHUB_WORKSPACE"
+        mkdir -p release
+        cp -r public release/
+        cp artifacts/marinenp-*/* release/
+        cat sql/sqlite/marinenp-sqlite.db.gz.part-*.gz | gunzip -c > release/marinenp-sqlite.db
+        cd release && zip -r ../release_app.zip .
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          release_app.zip
+          artifacts/marinenp-linux/*
+          artifacts/marinenp-windows.exe/*
+          artifacts/marinenp-macos/*
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

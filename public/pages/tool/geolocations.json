@@ -1,0 +1,108 @@
+{
+  "type": "page",
+  "title": "Marine Organism Geographic Distribution Visualization",
+  "body": [
+    {
+      "type": "service",
+      "api": {
+        "url": "/api/v1/organisms?page=${page}&perPage=${perPage}",
+        "method": "get",
+        "responseData": {
+          "transferOptions": "${organisms|pick:label~name,value~aphiaid_worms}"
+        }
+      },
+      "body": [
+        {
+          "type": "transfer",
+          "name": "organism",
+          "label": "Use the search field below to search for the organism.",
+          "searchable": true,
+          "searchApi": "/api/v1/organisms/autocomplete?search=${term}",
+          "joinValues": true,
+          "extractValue": true,
+          "source": "${transferOptions}"
+        },
+        {
+          "type": "button",
+          "label": "Show Distribution",
+          "level": "primary",
+          "actionType": "dialog",
+          "dialog": {
+            "title": "Geographic Distribution",
+            "size": "lg",
+            "body": {
+              "type": "service",
+              "api": {
+                "method": "get",
+                "url": "/api/v1/obis/locations?aphia_ids=${organism}"
+              },
+              "body": [
+                {
+                  "type": "tpl",
+                  "tpl": "Total observation records: ${total}",
+                  "className": "mb-2",
+                  "visibleOn": "${results && results.length > 0}"
+                },
+                {
+                  "type": "chart",
+                  "height": 500,
+                  "mapName": "world",
+                  "mapURL": "/public/js/amis/map/world.json",
+                  "visibleOn": "${results && results.length > 0}",
+                  "config": {
+                    "backgroundColor": "#87CEEB",
+                    "tooltip": {
+                      "trigger": "item",
+                      "formatter": "function(params) { var id = params.name; var lon = params.value[0]; var lat = params.value[1]; var date = params.value[2]; return '<b>Record ID:</b> ' + id + '<br/>' + '<b>Date:</b> ' + date + '<br/>' + '<b>Latitude:</b> ' + lat + '<br/>' + '<b>Longitude:</b> ' + lon; }"
+                    },
+                    "geo": {
+                      "map": "world",
+                      "zoom": 1,
+                      "roam": false,
+                      "center": [
+                        0,
+                        0
+                      ],
+                      "itemStyle": {
+                        "areaColor": "#D2B48C",
+                        "borderColor": "#D2B48C"
+                      },
+                      "emphasis": {
+                        "itemStyle": {
+                          "areaColor": "#C2A47C"
+                        },
+                        "label": {
+                          "show": false
+                        }
+                      }
+                    },
+                    "series": [
+                      {
+                        "name": "Observations",
+                        "type": "scatter",
+                        "coordinateSystem": "geo",
+                        "data": "${results}",
+                        "symbolSize": 8,
+                        "itemStyle": {
+                          "color": "#ff0000"
+                        },
+                        "emphasis": {
+                          "scale": 1.5
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "tpl",
+                  "tpl": "No distribution data available for the selected organisms",
+                  "visibleOn": "${!results || results.length === 0}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

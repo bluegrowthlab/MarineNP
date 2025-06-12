@@ -1,0 +1,134 @@
+{
+  "type": "page",
+  "title": "",
+  "body": [
+    {
+      "type": "panel",
+      "title": "Quick Deployment Guide",
+      "body": [
+        {
+          "type": "wizard",
+          "mode": "vertical",
+          "className": "h-96",
+          "steps": [
+            {
+              "title": "System Requirements",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "Before starting the deployment, ensure your system meets the following requirements:\n\n| Category | Requirement |\n|----------|-------------|\n| Memory | Minimum 8GB RAM |\n| Storage | Minimum 32GB free disk space |\n| Operating System | Windows 10 (x64) or newer, macOS (Apple Silicon), Linux (tested on Ubuntu 24.04, compatible with other x64 distributions) |\n| Network | Internet access required only for initial file downloads |\n\n**Note:** Internet access is only required for the initial download of files. Once all files are downloaded, the application can run offline."
+                }
+              ]
+            },
+            {
+              "title": "Download and Extract",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "### 1. Download Package\n\nDownload the application package that includes all necessary files:\n\n[Download Application Package](https://marinenp.scicloud.eu/#/data-access/downloads)\n\n### 2. Extract Files\n\nExtract the downloaded zip file to a directory of your choice. The package includes:\n\n- Static files\n- Executables for Windows, Linux, and macOS\n- Database files\n\nThis will be your application directory."
+                }
+              ]
+            },
+            {
+              "title": "Run the Application",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "### Windows\n\nDouble-click `marinenp-windows.exe`.\n\n### Linux/macOS\n\nMake the file executable and run it:\n\n```bash\nchmod +x marinenp-linux  # for Linux\n./marinenp-linux\nchmod +x marinenp-macos  # for macOS\n./marinenp-macos\n```"
+                }
+              ]
+            },
+            {
+              "title": "Access the Application",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "Open your web browser and navigate to:\n\nhttp://localhost:3000"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "panel",
+      "title": "Advanced Configuration",
+      "body": [
+        {
+          "type": "tabs",
+          "tabs": [
+            {
+              "title": "Custom Port",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "Create a `.env` file in the same directory as the executable with the following content:\n\n```plaintext\nPORT=8080\n```\n\nReplace `8080` with your desired port number."
+                }
+              ]
+            },
+            {
+              "title": "Database Updates",
+              "body": [
+                {
+                  "type": "markdown",
+                  "value": "To update the database:\n\n1. Download the latest SQLite database file from the [Downloads](https://marinenp.scicloud.eu/#/data-access/downloads) page\n2. Stop the running application\n3. Replace the existing database file with the downloaded one\n4. Restart the application"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "panel",
+      "title": "Troubleshooting",
+      "body": [
+        {
+          "type": "markdown",
+          "value": "| Issue | Solution |\n|-------|----------|\n| Port already in use | Change the port in the .env file or stop the application using the current port |\n| Application won't start | Ensure you have extracted all static files and they are in the correct location |\n| Database errors | Download a fresh copy of the database file from the Downloads page |"
+        }
+      ]
+    }
+  ],
+  "data": {
+    "requirements": [
+      {
+        "category": "Memory",
+        "requirement": "Minimum 8GB RAM"
+      },
+      {
+        "category": "Storage",
+        "requirement": "Minimum 32GB free disk space"
+      },
+      {
+        "category": "Operating System",
+        "requirement": "Windows 10 (x64) or newer, macOS (Apple Silicon), Linux (tested on Ubuntu 24.04, compatible with other x64 distributions)"
+      },
+      {
+        "category": "Network",
+        "requirement": "Internet access required only for initial file downloads"
+      }
+    ],
+    "issues": [
+      {
+        "issue": "Port already in use",
+        "solution": "Change the port in the .env file or stop the application using the current port"
+      },
+      {
+        "issue": "Application won't start",
+        "solution": "Ensure you have extracted all static files and they are in the correct location"
+      },
+      {
+        "issue": "Database errors",
+        "solution": "Download a fresh copy of the database file from the Downloads page"
+      }
+    ]
+  }
+}

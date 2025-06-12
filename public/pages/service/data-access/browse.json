@@ -1,0 +1,432 @@
+{
+  "type": "page",
+  "body": {
+    "type": "crud",
+    "name": "crud",
+    "api": {
+      "method": "get",
+      "url": "/api/v1/molecules/search"
+    },
+    "syncLocation": true,
+    "mode": "cards",
+    "headerToolbar": [
+      {
+        "type": "tpl",
+        "tpl": "Found <strong>${total | default:0}</strong> results",
+        "className": "v-middle"
+      },
+      {
+        "type": "button",
+        "label": "Export",
+        "actionType": "button",
+        "onEvent": {
+          "click": {
+            "actions": [
+              {
+                "actionType": "dialog",
+                "dialog": {
+                  "title": "Export Result",
+                  "body": [
+                    {
+                      "type": "container",
+                      "className": "d-flex flex-column",
+                      "body": [
+                        {
+                          "type": "tpl",
+                          "tpl": "Download will start in a few seconds.",
+                          "className": "text-center mb-4"
+                        }
+                      ]
+                    }
+                  ],
+                  "showLoading": true,
+                  "closeOnEsc": false,
+                  "closeOnOutside": false,
+                  "actions": []
+                }
+              },
+              {
+                "actionType": "ajax",
+                "api": {
+                  "method": "get",
+                  "url": "/api/v1/molecules/export",
+                  "data": "$$",
+                  "responseType": "blob"
+                },
+                "onEvent": {
+                  "success": {
+                    "actions": [
+                      {
+                        "actionType": "close"
+                      },
+                      {
+                        "actionType": "download",
+                        "args": {
+                          "filename": "marinenp-export.zip"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "level": "primary",
+        "className": "ml-2"
+      },
+      {
+        "type": "button",
+        "label": "Analysis",
+        "actionType": "button",
+        "onEvent": {
+          "click": {
+            "actions": [
+              {
+                "actionType": "link",
+                "args": {
+                  "link": "/analysis",
+                  "params": "$$"
+                }
+              }
+            ]
+          }
+        },
+        "level": "primary",
+        "className": "ml-2"
+      }
+    ],
+    "footerToolbar": [
+      "switch-per-page",
+      "pagination"
+    ],
+    "defaultParams": {
+      "perPage": 10
+    },
+    "placeholder": "No results found",
+    "columnsCount": 5,
+    "filter": {
+      "name": "molecule_filter",
+      "title": "Search",
+      "mode": "horizontal",
+      "body": [
+        {
+          "type": "textarea",
+          "label": "Keyword",
+          "name": "keyword",
+          "placeholder": "InChI, Synonyms, SMILES, CAS, etc."
+        },
+        {
+          "type": "fieldset",
+          "title": "Advanced Search",
+          "collapsable": true,
+          "collapsed": true,
+          "body": [
+            {
+              "type": "combo",
+              "name": "conditions",
+              "multiple": true,
+              "addable": true,
+              "removable": true,
+              "draggable": true,
+              "draggableTip": "Drag to reorder conditions",
+              "addButtonText": "Add Condition",
+              "items": [
+                {
+                  "type": "group",
+                  "body": [
+                    {
+                      "type": "select",
+                      "name": "field",
+                      "label": "Field",
+                      "options": [
+                        {
+                          "label": "Identifier",
+                          "value": "identifier"
+                        },
+                        {
+                          "label": "Name",
+                          "value": "name"
+                        },
+                        {
+                          "label": "CAS Number",
+                          "value": "cas"
+                        },
+                        {
+                          "label": "IUPAC Name",
+                          "value": "iupac_name"
+                        },
+                        {
+                          "label": "Synonyms",
+                          "value": "synonyms"
+                        },
+                        {
+                          "label": "Standard InChI",
+                          "value": "standard_inchi"
+                        },
+                        {
+                          "label": "Standard InChI Key",
+                          "value": "standard_inchi_key"
+                        },
+                        {
+                          "label": "Canonical SMILES",
+                          "value": "canonical_smiles"
+                        },
+                        {
+                          "label": "Sugar Free SMILES",
+                          "value": "sugar_free_smiles"
+                        },
+                        {
+                          "label": "Organism",
+                          "value": "organism"
+                        },
+                        {
+                          "label": "Has Stereo",
+                          "value": "has_stereo"
+                        },
+                        {
+                          "label": "Molecular Formula",
+                          "value": "properties.molecular_formula"
+                        },
+                        {
+                          "label": "Molecular Weight",
+                          "value": "properties.molecular_weight"
+                        },
+                        {
+                          "label": "Exact Molecular Weight",
+                          "value": "properties.exact_molecular_weight"
+                        },
+                        {
+                          "label": "ALogP",
+                          "value": "properties.alogp"
+                        },
+                        {
+                          "label": "Topological Polar Surface Area",
+                          "value": "properties.topological_polar_surface_area"
+                        },
+                        {
+                          "label": "Total Atom Count",
+                          "value": "properties.total_atom_count"
+                        },
+                        {
+                          "label": "Heavy Atom Count",
+                          "value": "properties.heavy_atom_count"
+                        },
+                        {
+                          "label": "Rotatable Bond Count",
+                          "value": "properties.rotatable_bond_count"
+                        },
+                        {
+                          "label": "H-Bond Acceptors",
+                          "value": "properties.hydrogen_bond_acceptors"
+                        },
+                        {
+                          "label": "H-Bond Donors",
+                          "value": "properties.hydrogen_bond_donors"
+                        },
+                        {
+                          "label": "H-Bond Acceptors (Lipinski)",
+                          "value": "properties.hydrogen_bond_acceptors_lipinski"
+                        },
+                        {
+                          "label": "H-Bond Donors (Lipinski)",
+                          "value": "properties.hydrogen_bond_donors_lipinski"
+                        },
+                        {
+                          "label": "Lipinski Rule of Five Violations",
+                          "value": "properties.lipinski_rule_of_five_violations"
+                        },
+                        {
+                          "label": "Aromatic Rings Count",
+                          "value": "properties.aromatic_rings_count"
+                        },
+                        {
+                          "label": "QED Drug Likeliness",
+                          "value": "properties.qed_drug_likeliness"
+                        },
+                        {
+                          "label": "Formal Charge",
+                          "value": "properties.formal_charge"
+                        },
+                        {
+                          "label": "Fraction Csp3",
+                          "value": "properties.fractioncsp3"
+                        },
+                        {
+                          "label": "Number of Minimal Rings",
+                          "value": "properties.number_of_minimal_rings"
+                        },
+                        {
+                          "label": "Van Der Walls Volume",
+                          "value": "properties.van_der_walls_volume"
+                        },
+                        {
+                          "label": "Contains Sugar",
+                          "value": "properties.contains_sugar"
+                        },
+                        {
+                          "label": "Contains Ring Sugars",
+                          "value": "properties.contains_ring_sugars"
+                        },
+                        {
+                          "label": "Contains Linear Sugars",
+                          "value": "properties.contains_linear_sugars"
+                        },
+                        {
+                          "label": "NP Likeness",
+                          "value": "properties.np_likeness"
+                        },
+                        {
+                          "label": "Chemical Class",
+                          "value": "properties.chemical_class"
+                        },
+                        {
+                          "label": "Chemical Sub Class",
+                          "value": "properties.chemical_sub_class"
+                        },
+                        {
+                          "label": "Chemical Super Class",
+                          "value": "properties.chemical_super_class"
+                        },
+                        {
+                          "label": "Direct Parent Classification",
+                          "value": "properties.direct_parent_classification"
+                        },
+                        {
+                          "label": "NP Classifier Pathway",
+                          "value": "properties.np_classifier_pathway"
+                        },
+                        {
+                          "label": "NP Classifier Superclass",
+                          "value": "properties.np_classifier_superclass"
+                        },
+                        {
+                          "label": "NP Classifier Class",
+                          "value": "properties.np_classifier_class"
+                        },
+                        {
+                          "label": "NP Classifier Is Glycoside",
+                          "value": "properties.np_classifier_is_glycoside"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "select",
+                      "name": "operator",
+                      "label": "Operator",
+                      "visibleOn": "this.field !== 'has_stereo' && this.field !== 'properties.contains_sugar' && this.field !== 'properties.contains_ring_sugars' && this.field !== 'properties.contains_linear_sugars' && this.field !== 'properties.np_classifier_is_glycoside'",
+                      "value": "eq",
+                      "options": [
+                        {
+                          "label": "Equals",
+                          "value": "eq"
+                        },
+                        {
+                          "label": "Not Equals",
+                          "value": "ne"
+                        },
+                        {
+                          "label": "Greater Than",
+                          "value": "gt"
+                        },
+                        {
+                          "label": "Greater Than or Equal",
+                          "value": "gte"
+                        },
+                        {
+                          "label": "Less Than",
+                          "value": "lt"
+                        },
+                        {
+                          "label": "Less Than or Equal",
+                          "value": "lte"
+                        },
+                        {
+                          "label": "Contains",
+                          "value": "contains"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "value",
+                      "label": "Value",
+                      "visibleOn": "this.field !== 'has_stereo' && this.field !== 'properties.contains_sugar' && this.field !== 'properties.contains_ring_sugars' && this.field !== 'properties.contains_linear_sugars' && this.field !== 'properties.np_classifier_is_glycoside'"
+                    },
+                    {
+                      "type": "switch",
+                      "name": "value",
+                      "label": "Value",
+                      "trueValue": 1,
+                      "falseValue": 0,
+                      "visibleOn": "this.field === 'has_stereo' || this.field === 'properties.contains_sugar' || this.field === 'properties.contains_ring_sugars' || this.field === 'properties.contains_linear_sugars' || this.field === 'properties.np_classifier_is_glycoside'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "type": "button",
+          "label": "Reset",
+          "level": "danger",
+          "onEvent": {
+            "click": {
+              "actions": [
+                {
+                  "actionType": "setValue",
+                  "componentName": "molecule_filter",
+                  "args": {
+                    "value": {
+                      "keyword": "",
+                      "conditions": []
+                    }
+                  }
+                },
+                {
+                  "actionType": "submit",
+                  "componentName": "molecule_filter"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "submit",
+          "level": "primary",
+          "label": "Search"
+        }
+      ]
+    },
+    "card": {
+      "header": {
+        "title": "${identifier}"
+      },
+      "body": {
+        "type": "tpl",
+        "tpl": "<div style='display: flex; justify-content: center;'><div style='position: relative; width: 100%; max-width: 400px; padding-top: 75%;'><svg data-smiles='${canonical_smiles}' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;' /></div></div>",
+        "popOver": {
+          "trigger": "hover",
+          "position": "left-top",
+          "showIcon": false,
+          "title": "Properties",
+          "body": {
+            "type": "tpl",
+            "tpl": "<div style='line-height: 1.6;'><div><strong>${name ? name : standard_inchi_key}</strong></div><div>Formula: ${properties.molecular_formula}</div><div>MW: ${properties.molecular_weight}</div><div>NP-likeness: ${properties.np_likeness}</div></div>"
+          }
+        }
+      },
+      "actions": [
+        {
+          "type": "button",
+          "label": "Details",
+          "actionType": "link",
+          "link": "/data-access/details?identifier=${identifier}"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,539 @@
+{
+  "type": "page",
+  "body": {
+    "type": "service",
+    "api": {
+      "method": "get",
+      "url": "/api/v1/molecules/${identifier}"
+    },
+    "body": {
+      "type": "panel",
+      "body": [
+        {
+          "type": "tpl",
+          "tpl": "<h3>${identifier}</h3>  <h2>${name}</h2>"
+        },
+        {
+          "type": "tpl",
+          "tpl": "<h3>${iupac_name}</h3>"
+        },
+        {
+          "type": "tabs",
+          "tabs": [
+            {
+              "title": "InChI",
+              "body": {
+                "type": "property",
+                "items": [
+                  {
+                    "label": "Standard InChI",
+                    "content": "${standard_inchi}",
+                    "span": 4,
+                    "labelClassName": "text-sm"
+                  },
+                  {
+                    "label": "Standard InChI Key",
+                    "content": "${standard_inchi_key}",
+                    "span": 4,
+                    "labelClassName": "text-sm"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "SMILES",
+              "body": {
+                "type": "property",
+                "items": [
+                  {
+                    "label": "Canonical SMILES",
+                    "content": "${canonical_smiles}",
+                    "span": 4
+                  },
+                  {
+                    "label": "Sugar Free SMILES",
+                    "content": "${sugar_free_smiles}",
+                    "span": 4
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Synonyms",
+              "body": [
+                {
+                  "type": "property",
+                  "items": [
+                    {
+                      "label": "CAS Number",
+                      "content": {
+                        "type": "each",
+                        "source": "${SPLIT(cas, '\",\"')}",
+                        "items": {
+                          "type": "tag",
+                          "label": "${REPLACE(REPLACE(item, '[\"', ''), '\"]', '')}",
+                          "displayMode": "normal",
+                          "className": "mr-2 mb-2"
+                        }
+                      },
+                      "span": 4
+                    },
+                    {
+                      "label": "Synonyms",
+                      "content": {
+                        "type": "each",
+                        "source": "${SPLIT(synonyms, '\",\"')}",
+                        "items": {
+                          "type": "tag",
+                          "label": "${REPLACE(REPLACE(item, '[\"', ''), '\"]', '')}",
+                          "displayMode": "normal",
+                          "className": "mr-2 mb-2"
+                        }
+                      },
+                      "span": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Classification",
+              "body": {
+                "type": "property",
+                "column": 3,
+                "items": [
+                  {
+                    "span": 3
+                  },
+                  {
+                    "label": "CF Superclass",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.chemical_super_class}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.chemical_super_class&conditions[0][operator]=eq&conditions[0][value]=${properties.chemical_super_class}",
+                      "visibleOn": "${properties.chemical_super_class}",
+                      "labelClassName": "text-sm"
+                    }
+                  },
+                  {
+                    "label": "CF Class",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.chemical_class}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.chemical_class&conditions[0][operator]=eq&conditions[0][value]=${properties.chemical_class}",
+                      "visibleOn": "${properties.chemical_class}"
+                    }
+                  },
+                  {
+                    "label": "CF Subclass",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.chemical_sub_class}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.chemical_sub_class&conditions[0][operator]=eq&conditions[0][value]=${properties.chemical_sub_class}",
+                      "visibleOn": "${properties.chemical_sub_class}"
+                    }
+                  },
+                  {
+                    "label": "CF Direct Parent",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.direct_parent_classification}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.direct_parent_classification&conditions[0][operator]=eq&conditions[0][value]=${properties.direct_parent_classification}",
+                      "visibleOn": "${properties.direct_parent_classification}"
+                    }
+                  },
+                  {
+                    "span": 3
+                  },
+                  {
+                    "label": "NPC Pathway",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.np_classifier_pathway}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.np_classifier_pathway&conditions[0][operator]=eq&conditions[0][value]=${properties.np_classifier_pathway}",
+                      "visibleOn": "${properties.np_classifier_pathway}"
+                    }
+                  },
+                  {
+                    "label": "NPC Superclass",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.np_classifier_superclass}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.np_classifier_superclass&conditions[0][operator]=eq&conditions[0][value]=${properties.np_classifier_superclass}",
+                      "visibleOn": "${properties.np_classifier_superclass}"
+                    }
+                  },
+                  {
+                    "label": "NPC Class",
+                    "content": {
+                      "type": "button",
+                      "label": "${properties.np_classifier_class}",
+                      "icon": "fa fa-search",
+                      "size": "xs",
+                      "displayMode": "rounded",
+                      "actionType": "link",
+                      "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=properties.np_classifier_class&conditions[0][operator]=eq&conditions[0][value]=${properties.np_classifier_class}",
+                      "visibleOn": "${properties.np_classifier_class}"
+                    }
+                  },
+                  {
+                    "span": 3
+                  },
+                  {
+                    "label": "Is Glycoside",
+                    "content": "${properties.np_classifier_is_glycoside ? 'Yes' : 'No'}"
+                  },
+                  {
+                    "label": "Contains Sugar",
+                    "content": "${properties.contains_sugar ? 'Yes' : 'No'}"
+                  },
+                  {
+                    "label": "Contains Ring Sugars",
+                    "content": "${properties.contains_ring_sugars ? 'Yes' : 'No'}"
+                  },
+                  {
+                    "label": "Contains Linear Sugars",
+                    "content": "${properties.contains_linear_sugars ? 'Yes' : 'No'}"
+                  },
+                  {
+                    "label": "Has Stereo",
+                    "content": "${has_stereo ? 'Yes' : 'No'}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "columns": [
+            {
+              "md": 4,
+              "body": {
+                "type": "panel",
+                "title": "Structure",
+                "body": {
+                  "type": "tpl",
+                  "tpl": "<div style='display: flex; justify-content: center;'><div style='position: relative; width: 100%; max-width: 400px; padding-top: 75%;'><svg data-smiles='${canonical_smiles}' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;' /></div></div>"
+                }
+              }
+            },
+            {
+              "md": 8,
+              "body": {
+                "type": "panel",
+                "title": "Properties",
+                "body": {
+                  "type": "property",
+                  "column": 2,
+                  "items": [
+                    {
+                      "label": "Molecular Formula",
+                      "content": "${properties.molecular_formula}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Molecular Weight",
+                      "content": "${properties.molecular_weight}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Exact Molecular Weight",
+                      "content": "${properties.exact_molecular_weight}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "ALogP",
+                      "content": "${properties.alogp}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Topological Polar Surface Area",
+                      "content": "${properties.topological_polar_surface_area}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Total Atom Count",
+                      "content": "${properties.total_atom_count}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Heavy Atom Count",
+                      "content": "${properties.heavy_atom_count}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Rotatable Bond Count",
+                      "content": "${properties.rotatable_bond_count}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "H-Bond Acceptors",
+                      "content": "${properties.hydrogen_bond_acceptors}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "H-Bond Donors",
+                      "content": "${properties.hydrogen_bond_donors}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "H-Bond Acceptors (Lipinski)",
+                      "content": "${properties.hydrogen_bond_acceptors_lipinski}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "H-Bond Donors (Lipinski)",
+                      "content": "${properties.hydrogen_bond_donors_lipinski}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Lipinski Rule of Five Violations",
+                      "content": "${properties.lipinski_rule_of_five_violations}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Aromatic Rings Count",
+                      "content": "${properties.aromatic_rings_count}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "QED Drug Likeliness",
+                      "content": "${properties.qed_drug_likeliness}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Formal Charge",
+                      "content": "${properties.formal_charge}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Fraction Csp3",
+                      "content": "${properties.fractioncsp3}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Number of Minimal Rings",
+                      "content": "${properties.number_of_minimal_rings}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "Van Der Walls Volume",
+                      "content": "${properties.van_der_walls_volume}",
+                      "labelClassName": "text-sm"
+                    },
+                    {
+                      "label": "NP Likeness",
+                      "content": "${properties.np_likeness}",
+                      "labelClassName": "text-sm"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "title": "Biological Sources",
+          "body": {
+            "type": "tabs",
+            "tabs": [
+              {
+                "title": "Organisms",
+                "body": {
+                  "type": "list",
+                  "source": "${organisms}",
+                  "listItem": {
+                    "type": "hbox",
+                    "gap": "sm",
+                    "alignItems": "center",
+                    "columns": [
+                      {
+                        "type": "tpl",
+                        "tpl": "<strong>${name}</strong>",
+                        "className": "flex-grow-1"
+                      },
+                      {
+                        "type": "hbox",
+                        "gap": "xs",
+                        "alignItems": "center",
+                        "columns": [
+                          {
+                            "type": "button",
+                            "label": "IRI",
+                            "icon": "fa fa-external-link",
+                            "size": "xs",
+                            "displayMode": "rounded",
+                            "actionType": "url",
+                            "url": "${iri}",
+                            "visibleOn": "${STARTSWITH(iri, 'http')}"
+                          },
+                          {
+                            "type": "button",
+                            "label": "WoRMS:${aphiaid_worms}",
+                            "icon": "fa fa-database",
+                            "size": "xs",
+                            "displayMode": "rounded",
+                            "actionType": "url",
+                            "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=${aphiaid_worms}",
+                            "visibleOn": "aphiaid_worms"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Molecules",
+                            "icon": "fa fa-flask",
+                            "size": "xs",
+                            "displayMode": "rounded",
+                            "actionType": "link",
+                            "link": "/data-access/browse?perPage=10&page=1&conditions[0][field]=organism_id&conditions[0][operator]=eq&conditions[0][value]=${id}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "title": "NP Locations",
+                "body": [
+                  {
+                    "type": "each",
+                    "source": "${geo_locations}",
+                    "items": {
+                      "type": "tag",
+                      "label": "${item.name}",
+                      "displayMode": "normal",
+                      "className": "mr-2 mb-2"
+                    },
+                    "placeholder": "Not available"
+                  }
+                ]
+              },
+              {
+                "title": "OBIS Locations",
+                "body": [
+                  {
+                    "type": "select",
+                    "name": "selected_organism",
+                    "label": "Select Organism",
+                    "source": "${organisms}",
+                    "labelField": "name",
+                    "valueField": "aphiaid_worms",
+                    "clearable": true,
+                    "placeholder": "Select an organism to view distribution"
+                  },
+                  {
+                    "type": "button",
+                    "label": "Show Distribution",
+                    "level": "primary",
+                    "actionType": "dialog",
+                    "visibleOn": "${selected_organism}",
+                    "dialog": {
+                      "title": "Geographic Distribution",
+                      "size": "lg",
+                      "body": {
+                        "type": "service",
+                        "api": {
+                          "method": "get",
+                          "url": "/api/v1/obis/locations?aphia_ids=${selected_organism}"
+                        },
+                        "body": [
+                          {
+                            "type": "tpl",
+                            "tpl": "Total observation records: ${total}",
+                            "className": "mb-2",
+                            "visibleOn": "${results && results.length > 0}"
+                          },
+                          {
+                            "type": "chart",
+                            "height": 500,
+                            "mapName": "world",
+                            "mapURL": "/public/js/amis/map/world.json",
+                            "visibleOn": "${results && results.length > 0}",
+                            "config": {
+                              "backgroundColor": "#87CEEB",
+                              "tooltip": {
+                                "trigger": "item",
+                                "formatter": "function(params) { var id = params.name; var lon = params.value[0]; var lat = params.value[1]; var date = params.value[2]; return '<b>Record ID:</b> ' + id + '<br/>' + '<b>Date:</b> ' + date + '<br/>' + '<b>Latitude:</b> ' + lat + '<br/>' + '<b>Longitude:</b> ' + lon; }"
+                              },
+                              "geo": {
+                                "map": "world",
+                                "zoom": 1,
+                                "roam": false,
+                                "center": [
+                                  0,
+                                  0
+                                ],
+                                "itemStyle": {
+                                  "areaColor": "#D2B48C",
+                                  "borderColor": "#D2B48C"
+                                },
+                                "emphasis": {
+                                  "itemStyle": {
+                                    "areaColor": "#C2A47C"
+                                  },
+                                  "label": {
+                                    "show": false
+                                  }
+                                }
+                              },
+                              "series": [
+                                {
+                                  "name": "Observations",
+                                  "type": "scatter",
+                                  "coordinateSystem": "geo",
+                                  "data": "${results}",
+                                  "symbolSize": 8,
+                                  "itemStyle": {
+                                    "color": "#ff0000"
+                                  },
+                                  "emphasis": {
+                                    "scale": 1.5
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "tpl",
+                            "tpl": "No distribution data available for the selected organism",
+                            "visibleOn": "${!results || results.length === 0}"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

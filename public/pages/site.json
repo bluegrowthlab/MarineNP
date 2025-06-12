@@ -1,0 +1,95 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "/home"
+      },
+      {
+        "label": "",
+        "children": [
+          {
+            "label": "Welcome",
+            "url": "/home",
+            "icon": "fa fa-info-circle",
+            "schemaApi": "get:/pages/service/home.json",
+            "isDefaultPage": true
+          },
+          {
+            "label": "Data Access",
+            "url": "/data-access",
+            "icon": "fa fa-flask",
+            "redirect": "/data-access/browse",
+            "children": [
+              {
+                "label": "Browse",
+                "url": "browse",
+                "schemaApi": "get:/pages/service/data-access/browse.json"
+              },
+              {
+                "label": "Details",
+                "url": "details",
+                "visible": false,
+                "schemaApi": "get:/pages/service/data-access/details.json"
+              },
+              {
+                "label": "Downloads",
+                "url": "downloads",
+                "schemaApi": "get:/pages/service/data-access/downloads.json"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Tools",
+        "children": [
+          {
+            "label": "Analysis",
+            "url": "/analysis",
+            "icon": "fa fa-chart-bar",
+            "schemaApi": "get:/pages/tool/analysis.json"
+          },
+          {
+            "label": "Geolocations",
+            "url": "geolocations",
+            "icon": "fa fa-map-marker-alt",
+            "schemaApi": "get:/pages/tool/geolocations.json"
+          }
+        ]
+      },
+      {
+        "label": "Help",
+        "children": [
+          {
+            "label": "Guides",
+            "url": "guides",
+            "icon": "fa fa-book",
+            "schemaApi": "get:/pages/help/guides.json"
+          },
+          {
+            "label": "Local Deploy",
+            "url": "deploy",
+            "icon": "fa fa-server",
+            "schemaApi": "get:/pages/help/deploy.json"
+          },
+          {
+            "label": "FAQ",
+            "url": "faq",
+            "icon": "fa fa-question-circle",
+            "schemaApi": "get:/pages/help/faq.json"
+          },
+          {
+            "label": "About",
+            "url": "/about",
+            "icon": "fa fa-info-circle",
+            "schemaApi": "get:/pages/help/about.json"
+          }
+        ]
+      }
+    ]
+  }
+}

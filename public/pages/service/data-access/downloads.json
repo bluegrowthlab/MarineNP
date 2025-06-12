@@ -1,0 +1,133 @@
+{
+    "type": "page",
+    "body": {
+        "type": "service",
+        "data": {
+            "rows": [
+                {
+                    "type": "SQL database",
+                    "version": "v1",
+                    "releaseDate": "2025-06-08",
+                    "size": "224 MB",
+                    "filename": "marinenp_v1_r20250608.sql.gz",
+                    "downloadUrl": "https://marinenp.scicloud.eu/public/files/marinenp_v1_r20250608.sql.gz"
+                },
+                {
+                    "type": "CSV tables (archived)",
+                    "version": "v1",
+                    "releaseDate": "2025-06-08",
+                    "size": "220 MB",
+                    "filename": "marinenp_v1_r20250608_csv.zip",
+                    "downloadUrl": "https://marinenp.scicloud.eu/public/files/marinenp_v1_r20250608_csv.zip",
+                    "children": [
+                        {
+                            "filename": "citables.csv",
+                            "size": "2.6 MB"
+                        },
+                        {
+                            "filename": "citations.csv",
+                            "size": "7.4 MB"
+                        },
+                        {
+                            "filename": "entries.csv",
+                            "size": "2.3 GB"
+                        },
+                        {
+                            "filename": "geo_location_molecule.csv",
+                            "size": "2.3 MB"
+                        },
+                        {
+                            "filename": "geo_locations.csv",
+                            "size": "184 KB"
+                        },
+                        {
+                            "filename": "molecule_organism.csv",
+                            "size": "7.9 MB"
+                        },
+                        {
+                            "filename": "molecules.csv",
+                            "size": "56 MB"
+                        },
+                        {
+                            "filename": "organisms.csv",
+                            "size": "1.8 MB"
+                        },
+                        {
+                            "filename": "properties.csv",
+                            "size": "23 MB"
+                        }
+                    ]
+                },
+                {
+                    "type": "R Data",
+                    "version": "v1",
+                    "releaseDate": "2025-06-08",
+                    "size": "209 MB",
+                    "filename": "marinenp_v1_r20250608.RData",
+                    "downloadUrl": "https://marinenp.scicloud.eu/public/files/marinenp_v1_r20250608.RData"
+                },
+                {
+                    "type": "Sqlite DB",
+                    "version": "v1",
+                    "releaseDate": "2025-06-08",
+                    "size": "243 MB",
+                    "filename": "marinenp_v1_r20250608_db.zip",
+                    "downloadUrl": "https://marinenp.scicloud.eu/public/files/marinenp_v1_r20250608_db.zip"
+                },
+                {
+                    "type": "Application Package",
+                    "version": "v1",
+                    "releaseDate": "2025-06-08",
+                    "size": "-",
+                    "filename": "marinenp_v1_r20250608_app.zip",
+                    "downloadUrl": "https://marinenp.scicloud.eu/public/files/marinenp_v1_r20250608_app.zip"
+                }
+            ]
+        },
+        "body": [
+            {
+                "type": "table",
+                "source": "$rows",
+                "className": "m-b-none",
+                "columnsTogglable": false,
+                "columns": [
+                    {
+                        "name": "type",
+                        "label": "Type"
+                    },
+                    {
+                        "name": "version",
+                        "label": "Version"
+                    },
+                    {
+                        "name": "releaseDate",
+                        "label": "Release Date"
+                    },
+                    {
+                        "name": "size",
+                        "label": "Size"
+                    },
+                    {
+                        "name": "filename",
+                        "label": "Filename"
+                    },
+                    {
+                        "type": "operation",
+                        "name": "downloadUrl",
+                        "label": "Download",
+                        "buttons": [
+                            {
+                                "type": "button",
+                                "label": "Download",
+                                "level": "primary",
+                                "actionType": "url",
+                                "url": "${downloadUrl}",
+                                "visibleOn": "${downloadUrl}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

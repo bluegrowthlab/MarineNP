@@ -1,0 +1,41 @@
+{
+  "type": "page",
+  "title": "Frequently Asked Questions",
+  "body": [
+    {
+      "type": "container",
+      "body": [
+        {
+          "type": "panel",
+          "title": "How is the data processed in MarineNP?",
+          "body": "The data goes through a streamlined workflow: 1) Data Collection from COCONUT, WoRMS, and OBIS, 2) Data Integration (standardizing and harmonizing data), 3) Database Creation (converting to SQLite3 format), and 4) Local Deployment for stable access."
+        },
+        {
+          "type": "panel",
+          "title": "How can I cite MarineNP in my research?",
+          "body": "Liu, Z., Diopere, E., Li, Y., De Rijcke, M., Janssen, C. R., & Asselman, J. (2025). MarineNP: A Comprehensive and Locally Deployable Database of Marine Natural Products. Retrieved from https://marinenp.scicloud.eu/"
+        },
+        {
+          "type": "panel",
+          "title": "How can I get help or report issues?",
+          "body": "If you encounter any problems or need assistance, please contact us at Zixia.Liu(AT)UGent.be or visit the Blue Growth Research Lab at https://bluegrowthlab.ugent.be/contact/"
+        },
+        {
+          "type": "panel",
+          "title": "Is MarineNP free to use?",
+          "body": "Yes, MarineNP is freely available for research and educational purposes. The database is designed to be deployed locally, providing stable and reliable access to marine natural products data. All data in MarineNP is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC-BY-NC 4.0). This means you are free to share and adapt the data for non-commercial purposes, as long as you give appropriate credit to the original sources."
+        },
+        {
+          "type": "panel",
+          "title": "What are the system requirements for running MarineNP locally?",
+          "body": "MarineNP is designed to be lightweight and efficient. It uses SQLite3 as its database format, which means it can run on most modern operating systems with minimal system requirements. Specific requirements will be detailed in the installation documentation."
+        },
+        {
+          "type": "panel",
+          "title": "How often is the database updated?",
+          "body": "The database is updated within 6 months after the latest release of COCONUT, which is our primary source for marine natural products data. This ensures that users have access to the most current information from our source databases (COCONUT, WoRMS, and OBIS)."
+        }
+      ]
+    }
+  ]
+}
