@@ -1,0 +1,25 @@
+services:
+  marinenp:
+    image: debian:bookworm-slim
+    container_name: marinenp
+    working_dir: /app
+    environment:
+      PORT: "8080"
+    command: >
+      bash -lc "if [ ! -f /app/marinenp-linux ]; then
+      apt-get update &&
+      apt-get install -y --no-install-recommends wget unzip ca-certificates &&
+      rm -rf /var/lib/apt/lists/* &&
+      wget -O /app/release_app.zip https://github.com/bluegrowthlab/MarineNP/releases/download/v1.0.0/release_app.zip &&
+      unzip -o /app/release_app.zip -d /app;
+      fi &&
+      chmod +x /app/marinenp-linux &&
+      exec /app/marinenp-linux"
+    ports:
+      - "8080:8080"
+    volumes:
+      - marinenp_data:/app
+    restart: unless-stopped
+
+volumes:
+  marinenp_data:
